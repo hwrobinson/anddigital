@@ -20,6 +20,12 @@ public class CustomerService {
     this.customerDAO = customerDAO;
   }
 
+  public Customer addCustomer(Customer customer) {
+    customer.setId(customerDAO.getAll().size() + 1);
+    customerDAO.save(customer);
+    return customer;
+  }
+
   public List<PhoneNumber> getAllCustomerPhoneNumbers() {
     return customerDAO.getAll()
             .stream()

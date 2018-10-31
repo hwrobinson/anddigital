@@ -1,5 +1,6 @@
 package com.telecomprovider.customers.Controller;
 
+import com.telecomprovider.customers.model.Customer;
 import com.telecomprovider.customers.model.PhoneNumber;
 import com.telecomprovider.customers.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,11 @@ public class CustomerController {
     customerService.activateCustomerNumber(id, phoneNumber);
     return new ResponseEntity<>(HttpStatus.OK);
   }
+
+  @RequestMapping(method = RequestMethod.POST)
+  public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
+    Customer customerAdded = customerService.addCustomer(customer);
+    return new ResponseEntity<>(customerAdded, HttpStatus.CREATED);
+  }
+
 }

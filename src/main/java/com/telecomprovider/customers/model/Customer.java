@@ -1,6 +1,7 @@
 package com.telecomprovider.customers.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Customer {
 
   private Integer id;
@@ -17,9 +19,9 @@ public class Customer {
   private List<PhoneNumber> phoneNumbers;
 
   @JsonCreator
-  public Customer(@JsonProperty Integer id,
-                  @JsonProperty String name,
-                  @JsonProperty List<PhoneNumber> phoneNumbers) {
+  public Customer(@JsonProperty(value = "id") Integer id,
+                  @JsonProperty(value = "name") String name,
+                  @JsonProperty(value = "phoneNumbers") List<PhoneNumber> phoneNumbers) {
     this.id = id;
     this.name = name;
     this.phoneNumbers = phoneNumbers;
